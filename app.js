@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import routesProductos from './routes/productos.js'
+import routesOrders from './routes/orders.js'
 import routesUsuarios from './routes/usuarios.js';
 import bodyParser from 'body-parser';
 import dbClient from './config/dbClient.js';
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use('/products', routesProductos);
+app.use('/orders', routesOrders);
 app.use('/users', routesUsuarios);
 
 try {

@@ -12,7 +12,8 @@ const ProductosSchema = new mongoose.Schema(
         },
         type: {
             type: String,
-            required: true
+            required: true,
+            enum: ['desayuno', 'almuerzo', 'cena']
         },
         dateEntry: {
             type: String,
