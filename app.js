@@ -7,7 +7,11 @@ import bodyParser from 'body-parser';
 import dbClient from './config/dbClient.js';
 
 const app = express();
+const cors = require('cors')
 
+app.use(cors({
+    origin: 'http://localhost:3000', 
+  }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
