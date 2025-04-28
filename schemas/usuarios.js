@@ -8,7 +8,7 @@ const usuarioSchema = new mongoose.Schema(
             unique: true,
             trim: true,
         },
-        nombre: {
+        name: {
             type: String,
             required: true,
             trim: true,
@@ -18,7 +18,7 @@ const usuarioSchema = new mongoose.Schema(
             required: true,
             enum: ['admin', 'chef', 'waiter'],
         },
-        clave: {
+        password: {
             type: String,
             required: true,
         }
