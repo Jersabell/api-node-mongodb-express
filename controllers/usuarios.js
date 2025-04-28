@@ -11,8 +11,8 @@ class usuariosController {
         try {
             const { email, name, rol, password } = req.body;
 
-            const usuarioExiste = await usuariosModel.getOne({ email });
-            if (usuarioExiste) {
+            const user = await usuariosModel.getOne({ email });
+            if (user) {
                 return res.status(400).json({ error: 'El usuario ya existe' });
             }
 
@@ -36,20 +36,20 @@ class usuariosController {
     async login(req, res) {
         const { email, password } = req.body;
 
-        const usuarioExiste = await usuariosModel.getOne({ email });
-        if (!usuarioExiste) {
+        const user = await usuariosModel.getOne({ email });
+        if (!user) {
             return res.status(400).json({ error: 'El usuario no existe' });
         }
 
-        const claveValida = await bcrypt.compare(password, usuarioExiste.password);
+        const claveValida = await bcrypt.compare(password, user.password);
 
         if (!claveValida) {
             return res.status(400).json({ error: 'Clave no válida' });
         }
 
-        const token = generarToken(email);
+        const accessToken = generarToken(email);
 
-        return res.status(200).json({ msg: 'Usuario autenticado', token, usuarioExiste });
+        return res.status(200).json({ msg: 'Usuario autenticado', accessToken, user });
     }
 
     async profile(req, res) {
