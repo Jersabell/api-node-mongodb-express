@@ -49,7 +49,7 @@ class usuariosController {
 
         const token = generarToken(email);
 
-        return res.status(200).json({ msg: 'Usuario autenticado', token });
+        return res.status(200).json({ msg: 'Usuario autenticado', token, usuarioExiste });
     }
 
     async profile(req, res) {
