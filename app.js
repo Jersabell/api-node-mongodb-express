@@ -1,6 +1,6 @@
-import 'dotenv/config';
 import express from 'express';
-import cors from 'cors'
+import cors from 'cors';
+import 'dotenv/config';
 import routesProductos from './routes/productos.js'
 import routesOrders from './routes/orders.js'
 import routesUsuarios from './routes/usuarios.js';
@@ -9,16 +9,10 @@ import dbClient from './config/dbClient.js';
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000'];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Origen no permitido por CORS'));
-    }
-  }
+  origin: ['http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  credentials: true
 }));
 
 app.use(bodyParser.json());
