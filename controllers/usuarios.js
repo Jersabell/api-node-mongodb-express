@@ -61,6 +61,15 @@ class usuariosController {
             res.status(500).send(e);
         }
     }
+
+    async getAllUsers(req, res) {
+        try {
+            const data = await usuariosModel.getAll();
+            res.status(201).json(data);
+        } catch (e) {
+            res.status(500).send(e);
+        }
+    }
 }
 
 export default new usuariosController();
